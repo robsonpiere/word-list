@@ -11,8 +11,8 @@ class WordsTestCase(unittest.TestCase):
         self.assertEqual(remove_stopwords(original_text), "Falar fácil")
 
     def test_clear_text(self):
-        original_text = "Falar é fácil. Mostre-me o código."
-        self.assertEqual(clear_text(original_text), 'falar fácil mostre código')
+        original_text = "É fácil escrever código. Difícil é escrever código que funcione."
+        self.assertEqual(clear_text(original_text), 'fácil escrever código difícil escrever código funcione')
 
     def test_clear_text_list(self):
         original_list = [
@@ -49,3 +49,4 @@ class WordsTestCase(unittest.TestCase):
             'difícil escrever', 'código funcione'
         ]
         self.assertListEqual(generate_two_words_list(clear_list), expected_list)
+
