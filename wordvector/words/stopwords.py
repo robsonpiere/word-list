@@ -36,3 +36,4 @@ brazilian_stopwords = ['de', 'a', 'o', 'que', 'e', 'do', 'da', 'em', 'um', 'para
 
 def remove_stopwords(text: str) -> str:
     return " ".join([word for word in text.split() if word not in brazilian_stopwords])
+
