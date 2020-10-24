@@ -1,5 +1,5 @@
-
 from flask import Flask
+
 
 def handle_400(e):
     if type(e.description) is list:
@@ -19,11 +19,10 @@ def handle_500(e):
     return {'code': 500, "message:": "Ocorreu um erro interno na aplicação."}, 500
 
 
-def init_app(app: Flask):
+def init_app(app: Flask) -> None:
     """
     Adiciona handlers a aplicação
     """
     app.register_error_handler(400, handle_400)
     app.register_error_handler(404, handle_404)
     app.register_error_handler(500, handle_500)
-    
