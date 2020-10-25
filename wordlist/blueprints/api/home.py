@@ -2,7 +2,9 @@ from flask import Blueprint
 
 
 def home():
-    return {'message': 'Hello! Im word vector Api!'}
+    return {
+        'message': 'Olá eu sou a api de lista de palavras! veja a documentação em /docs'
+    }
 
 
 def add_rules(blueprint: Blueprint):
