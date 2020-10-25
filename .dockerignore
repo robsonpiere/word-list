@@ -1,0 +1,13 @@
+.github/
+.ideia/
+.venv/
+.vscode/
+.coverage/
+.editorconfig/
+.gitignore/
+coverage.xml
+Procfile
+README.MD
+LICENCE
+requirements-test.txt
+requirements-dev.txt
