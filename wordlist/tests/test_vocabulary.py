@@ -11,14 +11,14 @@ class VocabularyTestCase(unittest.TestCase):
         ]
         vocabulary = generate_vocabulary(texts=original_list)
         expected = {
-            'texts': ['falar fácil mostre código', 'fácil escrever código difícil escrever código funcione'],
-            'words_list': ['falar', 'fácil', 'mostre', 'código', 'escrever', 'difícil', 'funcione'],
-            'two_words_list': [
+            'textos': ['falar fácil mostre código', 'fácil escrever código difícil escrever código funcione'],
+            'listaDePalavras': ['falar', 'fácil', 'mostre', 'código', 'escrever', 'difícil', 'funcione'],
+            'listaDeDuasPalavras': [
                 'falar fácil', 'fácil mostre', 'mostre código', 'fácil escrever', 'escrever código',
                                'código difícil', 'difícil escrever', 'código funcione'
             ],
-            'word_vectors_list': [[1, 1, 1, 1, 0, 0, 0], [0, 1, 0, 2, 2, 1, 1]],
-            'two_words_vectors_list': [[1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 2, 1, 1, 1]]
+            'vetorDePalavras': [[1, 1, 1, 1, 0, 0, 0], [0, 1, 0, 2, 2, 1, 1]],
+            'vetorDeDuasPalavras': [[1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 2, 1, 1, 1]]
         }
         self.assertDictEqual(vocabulary, expected)
 
@@ -27,14 +27,14 @@ class VocabularyTestCase(unittest.TestCase):
             "Falar é fácil. Mostre-me o código.",
             "É fácil escrever código. Difícil é escrever código que funcione."
         ]
-        vocabulary = generate_vocabulary(texts=original_list, exclude =['words_list', 'word_vectors_list'])
+        vocabulary = generate_vocabulary(texts=original_list, result_filter =['textos', 'listaDeDuasPalavras', 'vetorDeDuasPalavras'])
         expected = {
-            'texts': ['falar fácil mostre código', 'fácil escrever código difícil escrever código funcione'],
-            'two_words_list': [
+            'textos': ['falar fácil mostre código', 'fácil escrever código difícil escrever código funcione'],
+            'listaDeDuasPalavras': [
                 'falar fácil', 'fácil mostre', 'mostre código', 'fácil escrever', 'escrever código',
                 'código difícil', 'difícil escrever', 'código funcione'
             ],
-            'two_words_vectors_list': [[1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 2, 1, 1, 1]]
+            'vetorDeDuasPalavras': [[1, 1, 1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 2, 1, 1, 1]]
         }
 
         self.assertDictEqual(vocabulary, expected)

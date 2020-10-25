@@ -1,22 +1,24 @@
 from .text import clear_texts
 
 
-def generate_vocabulary(texts: list, exclude: list = []):
+def generate_vocabulary(texts: list, result_filter: list = []):
     texts = clear_texts(texts)
     words_list = generate_words_list(texts)
     two_words_list = generate_two_words_list(texts)
 
     vocabulary = {
-        'texts': texts,
-        'words_list': words_list,
-        'two_words_list': two_words_list,
-        'word_vectors_list': generate_vectors(word_list=words_list, texts=texts),
-        'two_words_vectors_list': generate_vectors(word_list=two_words_list, texts=texts)
+        'textos': texts,
+        'listaDePalavras': words_list,
+        'listaDeDuasPalavras': two_words_list,
+        'vetorDePalavras': generate_vectors(word_list=words_list, texts=texts),
+        'vetorDeDuasPalavras': generate_vectors(word_list=two_words_list, texts=texts)
     }
 
-    for item in exclude:
-        vocabulary.pop(item, None)
-    return vocabulary
+    if not result_filter:
+        return vocabulary
+
+    filtered_vocabulary = {key: val for key, val in vocabulary.items() if key in result_filter}
+    return filtered_vocabulary
 
 
 def generate_words_list(texts: list) -> list:
@@ -50,9 +52,3 @@ def generate_vectors(word_list: list, texts: list) -> list:
     for text in texts:
         vectors.append([text.count(word_list_item) for word_list_item in word_list])
     return vectors
-
-
-
-
-
-
