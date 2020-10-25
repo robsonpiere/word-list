@@ -1,8 +1,5 @@
 name: Tests
 on:
-  push:
-      branches:
-          - "main"
   pull_request:
 jobs:
   tests:
@@ -22,16 +19,3 @@ jobs:
         - name: Run unittest
           run: |
             coverage run -m unittest
-            coverage xml
-        - name: Upload codecov
-          uses: codecov/codecov-action@v1
-          with:
-            verbose: true
-            flags: unittests
-            file: ./coverage.xml
-            fail_ci_if_error: true
-
-
-                
-
-      
