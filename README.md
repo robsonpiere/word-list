@@ -9,7 +9,7 @@
 [![Azure](https://img.shields.io/badge/-Azure-008AD7?logo=microsoft&color=008AD7&style=for-the-badge)](https://lista-de-palavras.azurewebsites.net)
 
 Links: 
- - [Documentação técnica](DOC.md)
+ - [Documentação técnica](DOCS.md)
 
 ## Rodando o projeto ##
 
@@ -25,17 +25,23 @@ pip install -r requirments txt
 
 3 - Rodar o projeto
 
-Linux
+<details>
+  <summary>Linux</summary>
+  
 ```bash
 export FLASK_APP=hello.py
 flask run
 ``` 
+</details>
 
-Windows
+<details>
+  <summary>Windows</summary>
+  
 ```powershell
 PS C:\path\to\app> $env:FLASK_APP = "main.py"
 PS C:\path\to\app> flask run
 ``` 
+</details>
 
 ### Em container ##
 ```docker
