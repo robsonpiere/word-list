@@ -8,6 +8,9 @@
 [![Heroku](https://img.shields.io/badge/-Heroku-430098?logo=heroku&color=430098&style=for-the-badge)](https://lista-de-palavras.herokuapp.com)
 [![Azure](https://img.shields.io/badge/-Azure-008AD7?logo=microsoft&color=008AD7&style=for-the-badge)](https://lista-de-palavras.azurewebsites.net)
 
+Links: 
+ - [Documentação técnica](DOC.md)
+
 ## Rodando o projeto ##
 
 ### Localmente ###
