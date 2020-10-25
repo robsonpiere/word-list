@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Lista de palavras
+  description: Api para geração de vetores de palavras
+  license:
+    name: MIT
+  version: 1.0.0
+servers:
+  - url: 'https://lista-de-palavras.herokuapp.com'
+  - url: 'https://lista-de-palavras.azurewebsites.net'
+tags:
+  - name: Vocabulario
+  - name: Sobre
+paths:
+  /vocabulary:
+    post:
+      tags:
+        - Vocabulario
+      summary: Geração do vocabulario
+      description: Geração do vocabulário e da lista de palavras
+      operationId: vocabulario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Corpo'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Resposta'
+components:
+  schemas:
+    Corpo:
+      required:
+        - textos
+      type: object
+      properties:
+        textos:
+          description: Textos para geração do vocabulário
+          type: array
+          items:
+            type: string
+          example:
+            - "Atirei o pau no gato"
+            - "Mas o gato não morreu"
+            - "Dona Chica admirou-se"
+            - "Do berro, do berro que o gato deu Miau!"
+        filtrar:
+          description: Filtro opcional de resultado (o default é retornar tudo)
+          type: array
+          items:
+            type: string
+            enum:
+            - textos
+            - listaDePalavras
+            - vetorDePalavras
+            - listaDeDuasPalavras
+            - vetorDeDuasPalavras
+          example:
+            - textos
+            - vetorDePalavras
+            - vetorDePalavras
+            - listaDeDuasPalavras
+            - vetorDeDuasPalavras
+          default:
+            - textos
+            - vetorDePalavras
+            - vetorDePalavras
+            - listaDeDuasPalavras
+            - vetorDeDuasPalavras
+    Resposta:
+      type: object
+      properties:
+        textos:
+          type: array
+          items:
+            type: string
+            example:
+              - "atirei pau gato"
+              - "gato morreu"
+              - "dona chica admirou"
+              - "berro berro gato deu miau"
+          description: Textos enviados, já limpos e com as stopwords removidas
+        listaDePalavras:
+          description: Lista de palavras
+          type: array
+          items:
+            type: string
+            example:
+              - "atirei"
+              - "pau"
+              - "gato"
+              - "morreu"
+              - "dona"
+              - "chica"
+              - "admirou"
+              - "berro"
+              - "deu"
+              - "miau"
+        listaDeDuasPalavras:
+          description: Lista de palavras
+          type: array
+          items:
+            type: string
+            example:
+              - "atirei pau"
+              - "pau gato"
+              - "gato morreu"
+              - "dona chica"
+              - "chica admirou"
+              - "berro berro"
+              - "berro gato"
+              - "gato deu"
+              - "deu miau"
+        vetorDePalavras:
+          description: vetor de palavras
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              enum: [0,1]
+            example: [ [ 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 1, 1, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 ], [ 0, 0, 1, 0, 0, 0, 0, 2, 1, 1 ] ]
+        vetorDeDuasPalavras:
+          description: vetor de palavras
+          type: array
+          items:
+            type: array
+            items:
+              type: integer
+              enum: [0,1]
+            example: [ [ 1, 1, 0, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 1, 0, 0, 0, 0, 0, 0 ], [ 0, 0, 0, 1, 1, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 1, 1, 1, 1 ] ]
