@@ -1,6 +1,6 @@
 import unittest
 from flask import  Flask
-from wordvector.app import create_app
+from wordlist.app import create_app
 
 
 class AppTestCase(unittest.TestCase):
