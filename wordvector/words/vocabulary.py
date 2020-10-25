@@ -1,7 +1,7 @@
 from .text import clear_texts
 
 
-def generate_vocabulary(texts: list):
+def generate_vocabulary(texts: list, exclude: list = []):
     texts = clear_texts(texts)
     words_list = generate_words_list(texts)
     two_words_list = generate_two_words_list(texts)
@@ -10,9 +10,12 @@ def generate_vocabulary(texts: list):
         'texts': texts,
         'words_list': words_list,
         'two_words_list': two_words_list,
-        'vectors_list': generate_vectors(word_list=words_list, texts=texts),
-        'two_vectors_list': generate_vectors(word_list=two_words_list, texts=texts)
+        'word_vectors_list': generate_vectors(word_list=words_list, texts=texts),
+        'two_words_vectors_list': generate_vectors(word_list=two_words_list, texts=texts)
     }
+
+    for item in exclude:
+        vocabulary.pop(item, None)
     return vocabulary
 
 
