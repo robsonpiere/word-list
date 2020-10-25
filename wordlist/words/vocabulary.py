@@ -2,6 +2,7 @@ from .text import clear_texts
 
 
 def generate_vocabulary(texts: list, result_filter: list = []):
+    """Geração do vocabulário"""
     texts = clear_texts(texts)
     words_list = generate_words_list(texts)
     two_words_list = generate_two_words_list(texts)
@@ -22,6 +23,7 @@ def generate_vocabulary(texts: list, result_filter: list = []):
 
 
 def generate_words_list(texts: list) -> list:
+    """Cria uma lista de palavras"""
     words_list = []
     for text in texts:
         words_in_text = text.split()
@@ -32,6 +34,7 @@ def generate_words_list(texts: list) -> list:
 
 
 def generate_two_words_list(texts: list) -> list:
+    """Cria uma lista de string's com duas palavras"""
     two_words_list = []
     for text in texts:
         for two_words in merge_two_words(text):
@@ -40,7 +43,8 @@ def generate_two_words_list(texts: list) -> list:
     return two_words_list
 
 
-def merge_two_words(text: str):
+def merge_two_words(text: str) -> list:
+    """Cria uma lista de string's com duas palavras"""
     words_in_text = text.split()
     for index, word in enumerate(words_in_text):
         if len(words_in_text) > index + 1:
@@ -48,6 +52,7 @@ def merge_two_words(text: str):
 
 
 def generate_vectors(word_list: list, texts: list) -> list:
+    """ Gera os vetores de ocorrências de uma palavra nos textos"""
     vectors = []
     for text in texts:
         vectors.append([text.count(word_list_item) for word_list_item in word_list])
