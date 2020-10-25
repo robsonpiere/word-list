@@ -8,6 +8,41 @@
 [![Heroku](https://img.shields.io/badge/-Heroku-430098?logo=heroku&color=430098&style=for-the-badge)](https://lista-de-palavras.herokuapp.com)
 [![Azure](https://img.shields.io/badge/-Azure-008AD7?logo=microsoft&color=008AD7&style=for-the-badge)](https://lista-de-palavras.azurewebsites.net)
 
+## Rodando o projeto ##
+
+### Localmente ###
+
+1 - Ativar seu ambiente virtual de preferência
+
+2 - Instalar as dependências
+
+```bash
+pip install -r requirments txt
+``` 
+
+3 - Rodar o projeto
+
+Linux
+```bash
+export FLASK_APP=hello.py
+flask run
+``` 
+
+Windows
+```powershell
+PS C:\path\to\app> $env:FLASK_APP = "main.py"
+PS C:\path\to\app> flask run
+``` 
+
+### Em container ##
+```docker
+docker build -t word-list ./
+docker run -d -p 80:80 word-list
+``` 
+docker build -t word-list ./
+
+## Descrição do problema ##
+
 **Prova Prática**
 
 **Vetor de Palavras**
@@ -130,8 +165,3 @@ Após o envio dos textos, o usuário poderá solicitar os seguintes resultados:
 
 4. Disponibilizar a API em um serviço Cloud da AWS ou do Google.
 
-**Observações:**
-
-**Linguagem de programação:** Na Cinnecta somos entusiastas Python, mas sinta-se a vontade para desenvolver em uma linguagem que te deixe confortável.
-
-Estética e layout são extras, não sendo foco da avaliação.
