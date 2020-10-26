@@ -1,8 +1,9 @@
 from flask import Blueprint, request, abort
 from wordlist.words.vocabulary import generate_vocabulary
+from wordlist.database.mongo import save, connect
 
 
-def add_rules(blueprint: Blueprint):
+def register_route(blueprint: Blueprint):
     blueprint.add_url_rule(rule='/vocabulary', view_func=generate, methods=['POST'])
 
 
@@ -12,6 +13,7 @@ def generate():
     texts = form.get('textos')
     result_filter = form.get('filtrar', [])
     vocabulary = generate_vocabulary(texts=texts, result_filter=result_filter)
+    save_log(vocabulary)
     return vocabulary
 
 
@@ -47,5 +49,9 @@ def validate_request(form):
     abort(400, description=details)
 
 
+def save_log(data: dict) -> None:
+    database = connect()
+    if database:
+        save(database=database, document=data.copy())
 
 

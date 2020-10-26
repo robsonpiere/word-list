@@ -5,15 +5,16 @@
 [![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
 [![Flask](https://img.shields.io/badge/flask-v1.1.2-green)](https://flask.palletsprojects.com/en/1.1.x/)
 
-[![Heroku](https://img.shields.io/badge/-Heroku-430098?logo=heroku&color=430098&style=for-the-badge)](https://lista-de-palavras.herokuapp.com)
-[![Azure](https://img.shields.io/badge/-Azure-008AD7?logo=microsoft&color=008AD7&style=for-the-badge)](https://lista-de-palavras.azurewebsites.net)
+[![Heroku](https://img.shields.io/badge/-Heroku-430098?logo=heroku&color=430098&style=for-the-badge)](https://lista-de-palavras.herokuapp.com/docs)
+[![Azure](https://img.shields.io/badge/-Azure-008AD7?logo=microsoft&color=008AD7&style=for-the-badge)](https://lista-de-palavras.azurewebsites.net/docs)
 
 Links: 
- - [Documentação técnica](DOCS.md)
+ - [Documentação técnica](informacoes.pdf)
 
 ## Rodando o projeto ##
 
 ### Localmente ###
+
 
 1 - Ativar seu ambiente virtual de preferência
 
@@ -29,7 +30,8 @@ pip install -r requirments txt
   <summary>Linux</summary>
   
 ```bash
-export FLASK_APP=hello.py
+export FLASK_APP=hello.py,
+export MONGO_STRING_CONNECTION="mongodb://<dbuser>:<dbpassword>@<host>:<port>/lista-de-palavras"
 flask run
 ``` 
 </details>
@@ -39,6 +41,7 @@ flask run
   
 ```powershell
 PS C:\path\to\app> $env:FLASK_APP = "main.py"
+PS C:\path\to\app> $env:MONGO_STRING_CONNECTION = "mongodb://<dbuser>:<dbpassword>@<host>:<port>/lista-de-palavras"
 PS C:\path\to\app> flask run
 ``` 
 </details>
@@ -46,7 +49,7 @@ PS C:\path\to\app> flask run
 ### Em container ##
 ```docker
 docker build -t word-list ./
-docker run -d -p 80:80 word-list
+docker run -d -p 80:80 word-list --env MONGO_STRING_CONNECTION = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/lista-de-palavras'
 ``` 
 docker build -t word-list ./
 

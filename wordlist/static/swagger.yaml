@@ -10,7 +10,7 @@ servers:
   - url: 'https://lista-de-palavras.azurewebsites.net'
 tags:
   - name: Vocabulario
-  - name: Sobre
+  - name: Historico
 paths:
   /vocabulary:
     post:
@@ -35,6 +35,15 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/Resposta'
+  /historico:
+    get:
+      tags:
+        - Historico
+      summary: Histórico de vocabulário
+      description: Exibe o histórico de buscas (as mais antigas são apagadas para economizar espaço)
+      responses:
+        '200':
+          description: "OK"
 components:
   schemas:
     Corpo:
