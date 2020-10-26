@@ -49,7 +49,7 @@ PS C:\path\to\app> flask run
 ### Em container ##
 ```docker
 docker build -t word-list ./
-docker run -d -p 80:80 word-list --env MONGO_STRING_CONNECTION = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/lista-de-palavras'
+docker run -d -p 80:80  -e MONGO_STRING_CONNECTION='mongodb://<dbuser>:<dbpassword>@<host>:<port>/lista-de-palavras' word-list
 ``` 
 docker build -t word-list ./
 
