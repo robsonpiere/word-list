@@ -7,5 +7,5 @@ def home():
     }
 
 
-def add_rules(blueprint: Blueprint):
+def register_route(blueprint: Blueprint):
     blueprint.add_url_rule('/', view_func=home)
